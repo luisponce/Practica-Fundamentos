@@ -14,7 +14,14 @@ package torreparqueadero;
 
 
 
-/** */
+/** Clase encargada de mantener control de todos los eventos (ingresos, retiros,
+ * etc..) los que son identificados por un recibo.
+ * <p>
+ * Esta clase sigue el patron de diseño singleton, buscando que solo exista una
+ * instancia de esta clase.
+ * 
+ * @author luismiguel
+ */
 public class LogEventos {
 	/** */
 	private Recibo listaRecibos;
@@ -22,7 +29,9 @@ public class LogEventos {
 	/** */
 	private int curNumeroRecibo;
         
-        
+        /**
+         * Unica instancia de la clase.
+         */
         private static LogEventos INSTANCE = new LogEventos(); 
         
         /** 
