@@ -45,6 +45,18 @@ public class Vehiculo {
      * @see HoraDelDia
      */
     private HoraDelDia horaEstRetiro;
+    
+    /**
+     * Fila donde fue parqueado el vehiculo. -1 si fue en el garage.
+     */
+    private int filaParqueo;
+    
+    /**
+     * Columna donde fue parqueado el vehiculo.
+     */
+    private int columnaParqueo;
+    
+    
 
     /** Constructor de vehiculo, que recibe todos los parametros relacionados con este.
      * 
@@ -93,4 +105,42 @@ public class Vehiculo {
     public HoraDelDia GetHoraIngreso() {
         return horaIngreso;
     }
+    
+    /**
+     * Geter de la fila de Parqueo.
+     * 
+     * @return la fila en que esta parqueado el vehiculo. 
+     */
+    public int GetFilaParqueo() {
+        return filaParqueo;
+    }
+
+    /**
+     * Seter de la fila de parqueo.
+     * 
+     * @param filaParqueo fila en que esta parqueado el vehiculo. -1 si esta en el sotano.
+     */
+    public void SetFilaParqueo(int filaParqueo) {
+        this.filaParqueo = filaParqueo;
+    }
+
+    /**
+     * Geter de la columna en que esta parqueado el vehiculo.
+     * 
+     * @return la columna donde esta parqueado el vehiculo.
+     */
+    public int GetColumnaParqueo() {
+        return columnaParqueo;
+    }
+
+    /**
+     * Seter de la columna en que esta parqueado el vehiculo.
+     * 
+     * @param columnaParqueo Columna en que esta parqueado el vehiculo.
+     */
+    public void SetColumnaParqueo(int columnaParqueo) {
+        this.columnaParqueo = columnaParqueo;
+    }
+    
+    
 }

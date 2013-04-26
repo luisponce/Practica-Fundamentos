@@ -1,6 +1,5 @@
 package torreparqueadero;
 
-//
 
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
@@ -17,9 +16,11 @@ import java.util.logging.Logger;
 //
 
 
-
-
-/** */
+/** 
+ * Clase encargada del mantenimiento y avance del tiempo dentro del sistema.
+ * 
+ * @author luismiguel
+ */
 public class RelojInterno extends Thread{
     /** Las hora que marca el reloj, sin minutos. Toma valoress enteros entre
      * 0 y 24.

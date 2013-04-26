@@ -14,28 +14,72 @@ package torreparqueadero;
 
 
 
-/** */
+/** 
+ * Clase que guarda la informacion relacionada con el evento de ingreso. Permite
+ * generar un recibo con el que se identifica el vehiculo, cliente y evento todo
+ * junto.
+ * 
+ * @author luismiguel
+ */
 public class Recibo {
-	/** */
-	private Vehiculo vehiculo;
-	
-	/** */
-	private Cliente cliente;
-	
-	/** */
-	private int numeroRecibo;
-	
-	/** */
-	public void ImprimirRecibo() {
-	
-	}
-	
-	/** */
-	public int GenerarCobro(HoraDelDia horaDeRetiro) {
-	
-	}
-        
-        public void GenerarDeudaAcumulada(){
-            
+    /**
+     * El Vehiculo del que se tiene control desde el recibo.
+     */
+    private Vehiculo vehiculo;
+
+    /** 
+     * El cliente dueño del Vehiculo registrado en el recibo.
+     */
+    private Cliente cliente;
+
+    /** 
+     * Numero unico del recibo.
+     */
+    private int numeroRecibo;
+
+    /** 
+     * Constructor del recibo, recibe el vehiculo y cliente relacionados, ademas
+     * del numero unico del recibo.
+     * 
+     * @param vehiculo El vehiculo registrado en el recibo.
+     * @param cliente El dueño del vehiculo.
+     * @param numeroRecibo Numero unico que identifica el recibo.
+     */
+    public Recibo(Vehiculo vehiculo, Cliente cliente, int numeroRecibo) {
+        this.vehiculo = vehiculo;
+        this.cliente = cliente;
+        this.numeroRecibo = numeroRecibo;
+    }
+
+    /** 
+     * Metodo para imprimir el recibo despues de ingresar un vehiculo.
+     */
+    public void ImprimirRecibo() {
+        System.out.println("Numero de recibo:   " + numeroRecibo);
+        System.out.println("ID del cliente:     " + cliente.GetID());
+        System.out.println("Placa del vehiculo: " + vehiculo.GetPlaca());
+        System.out.println("Tipo de vehiculo: " + vehiculo.GetTipo().name());
+        System.out.println("Ubicacion del cehiculo:");
+        System.out.print("  Piso: ");
+        if (vehiculo.GetFilaParqueo()==-1) {
+            System.out.println("Sotano");
+            System.out.println("  Celda: " + vehiculo.GetColumnaParqueo());
         }
+        else {
+            System.out.println((char) (65 + vehiculo.GetFilaParqueo()));
+            System.out.println("  Entrada: " + vehiculo.GetColumnaParqueo());
+        }
+        System.out.println("Hora de entrada: " + vehiculo.GetHoraIngreso().GetHoraEn24());
+        System.out.println("Hora estimada de retiro: " + vehiculo.GetHoraEstRetiro().GetHoraEn24());
+                
+    }
+
+    /** */
+    public int GenerarCobro(HoraDelDia horaDeRetiro) {
+        
+    }
+
+    public void GenerarDeudaAcumulada(){
+
+    }
 }

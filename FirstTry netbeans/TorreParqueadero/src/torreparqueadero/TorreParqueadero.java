@@ -14,6 +14,8 @@ public class TorreParqueadero {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        RelojInterno.GetInstance().start();
+        System.out.println(65+0);
+        
+        //RelojInterno.GetInstance().start();
     }
 }
