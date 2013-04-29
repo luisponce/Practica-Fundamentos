@@ -5,3 +5,8 @@
 *.jar
 *.war
 *.ear
+/Netbeans proyect/nbproject/private/
+/Netbeans proyect/build/
+/TorreParqueaderos/nbproject/private/
+/TorreParqueaderos/build/
+/TorreParqueaderos/dist/
