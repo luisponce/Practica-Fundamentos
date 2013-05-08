@@ -1,4 +1,4 @@
-
+ 
 package Model;
 
 /** Representa la hora en horas y minutos como un reloj militar,
@@ -41,7 +41,7 @@ public class HoraDelDia {
      * @param aComparar La hora recibida para comparar.
      * @return 1 si la recibida es mayor, 0 si es igual y -1 si es menor.
      */
-    public int Comparar(HoraDelDia aComparar) {
+    public int comparar(HoraDelDia aComparar) {
         if (aComparar.horas > this.horas){
             return 1;
         } else {

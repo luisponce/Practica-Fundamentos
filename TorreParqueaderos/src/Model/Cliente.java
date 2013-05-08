@@ -46,8 +46,8 @@ public class Cliente {
      * @param idCliente id del cliente a ingresar.
      * @return El objeto cliente resultado del ingreso.
      */
-    public Cliente IngresarCliente(int idCliente){
-        Cliente resBusqueda = BuscarClienteEnLista(idCliente);
+    public static Cliente ingresarCliente(int idCliente){
+        Cliente resBusqueda = buscarClienteEnLista(idCliente);
         if (resBusqueda == null){
             return new Cliente(idCliente);
         } else {
@@ -63,7 +63,7 @@ public class Cliente {
      * @param idCliente Numero de identificaion del cliente a buscar.
      * @return El cliente si se encuentra en el sistema, de otro modo null.
      */
-    public Cliente BuscarClienteEnLista(int idCliente){
+    public static Cliente buscarClienteEnLista(int idCliente){
         for (int i=0; i<listaClientes.size(); i++){
             if (Cliente.listaClientes.get(i).getID() == idCliente){
                 return Cliente.listaClientes.get(i);

@@ -10,6 +10,11 @@ package Model;
  */
 public class Recibo {
     /**
+     * Si el recibo a sido pagado o no.
+     */
+    private boolean activo;
+    
+    /**
      * El Vehiculo del que se tiene control desde el recibo.
      */
     private Vehiculo vehiculo;
@@ -46,13 +51,15 @@ public class Recibo {
         this.cliente = cliente;
         this.numeroRecibo = numeroRecibo;
         
-        this.ImprimirRecibo();
+        this.activo=true;
+        
+        this.imprimirRecibo();
     }
 
     /** 
      * Metodo para imprimir el recibo despues de ingresar un vehiculo.
      */
-    private void ImprimirRecibo() {
+    public void imprimirRecibo() {
         System.out.println("Numero de recibo:   " + numeroRecibo);
         System.out.println("ID del cliente:     " + cliente.getID());
         System.out.println("Placa del vehiculo: " + vehiculo.getPlaca());
@@ -80,7 +87,7 @@ public class Recibo {
      * @param horaDeRetiro hora en que el vehiculo es retirado.
      * @return La cantidad a pagar para retirar el vehiculo.
      */
-    public int GenerarCobro(HoraDelDia horaDeRetiro) {
+    public int generarCobro(HoraDelDia horaDeRetiro) {
         int horasCobro= horaDeRetiro.getHoras()-vehiculo.getHoraIngreso().getHoras();
         if (horaDeRetiro.getMinutos()-vehiculo.getHoraIngreso().getMinutos() > 0){
             horasCobro++;
@@ -99,10 +106,11 @@ public class Recibo {
      * 
      * @see Cliente
      */
-    public void GenerarDeudaAcumulada(){
-        int cobro=this.GenerarCobro(RelojInterno.getInstance().getHoraActual());
+    public void generarDeudaAcumulada(){
+        int cobro=this.generarCobro(RelojInterno.getInstance().getHoraActual());
         cobro += Recibo.MULTARETIRO*vehiculo.getTipo().getCosto();
         cliente.setDeuda(cobro);
+        this.activo=false;
     }
 
     /**
@@ -121,6 +129,61 @@ public class Recibo {
      */
     public int getNumeroRecibo() {
         return numeroRecibo;
+    }
+
+    /**
+     * geter del cliente relacionado en el recibo.
+     * 
+     * @return El cliente relacionado en el recibo. 
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+    
+    /**
+     * geter de la placa del vehiculo asociada con el recibo.
+     * 
+     * @return la placa del vehiculo asociado.
+     */
+    public String getPlaca(){
+        return vehiculo.getPlaca();
+    }
+    
+    /**
+     * geter del id del cliente asociado con el recibo.
+     * 
+     * @return el id del cliente asociado.
+     */
+    public int getIdCliente(){
+        return cliente.getID();
+    }
+    
+    /**
+     * geter de la hora de entrada del vehiculo asociado con el recibo.
+     * 
+     * @return la hora de entrada del vehoculo asociado.
+     */
+    public String getHoraEntrada(){
+        return vehiculo.getHoraIngreso().getHoraEn24();
+    }
+    
+    /**
+     * geter del tipo de vehiculo asociado con el recibo.
+     * 
+     * @return el tipo de vehiculo asociado con el recibo.
+     */
+    public String getTipoVehiculo(){
+        return vehiculo.getTipo().name();
+    }
+    
+    public boolean isActive(){
+        return activo;
+    }
+    
+    public void pagarRecibo(){
+        this.activo=false;
+        
+        this.cliente.setDeuda(0);
     }
 }
 

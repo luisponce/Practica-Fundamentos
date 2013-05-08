@@ -1,6 +1,7 @@
 
 package Model;
 
+import GUI.MainGui;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,8 +49,9 @@ public class RelojInterno extends Thread{
     public void run() {
         while(true){
             try {
-                sleep(60000);
-                this.AdelantarTiempo(0, 1);
+                //sleep(60000);
+                sleep(1000);
+                this.adelantarTiempo(0, 1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(RelojInterno.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -66,10 +68,12 @@ public class RelojInterno extends Thread{
     }
 
     /**
-     * @param horas
-     * @param minutos  
+     * Metodo para adelantar el tiempo actual una cantidad de horas y minutos.
+     * 
+     * @param horas Horas a adelantar.
+     * @param minutos Minutos a adelantar.
      */
-    public void AdelantarTiempo(int horas, int minutos) {
+    public void adelantarTiempo(int horas, int minutos) {
         this.minutos+=minutos;
         this.horas+=horas;
         
@@ -82,6 +86,7 @@ public class RelojInterno extends Thread{
             this.horas= this.horas%24;
         }
         
-        MainGui;
+        MainGui.setMainTimer(getHoraActual().getHoraEn24());
+        
     }
 }

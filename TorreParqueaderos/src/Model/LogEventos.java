@@ -23,6 +23,10 @@ public class LogEventos {
      */
     private int curNumeroRecibo;
     
+    /**
+     * constructor de log eventos que sigue el patron de diseño de un singleton,
+     * impidiendo que se cree mas de una instancia de la clase.
+     */
     private LogEventos() {
         this.listaRecibos = new ArrayList<Recibo>();
         curNumeroRecibo=0;
@@ -37,8 +41,8 @@ public class LogEventos {
         return LogEventosHolder.INSTANCE;
     }
     
+    
     private static class LogEventosHolder {
-
         private static final LogEventos INSTANCE = new LogEventos();
     }
     
@@ -49,7 +53,7 @@ public class LogEventos {
      * @param vIn Vehiculo que es ingresado.
      * @param cIn Cliente dueño del vehiculo ingresado.
      */
-    public void CrearEvento(Vehiculo vIn, Cliente cIn) {
+    public void crearEvento(Vehiculo vIn, Cliente cIn) {
         Recibo nuevo = new Recibo(vIn, cIn, this.curNumeroRecibo);
         this.curNumeroRecibo++;
         
@@ -62,13 +66,14 @@ public class LogEventos {
      * @param numRecibo numero del recibo a buscar.
      * @return El recibo (si existe) o null si no se encuentra.
      */
-    public Recibo BuscarRecibo(int numRecibo) {
+    public Recibo buscarRecibo(int numRecibo) throws Exception {
         for (int i=0; i<listaRecibos.size(); i++){
             if(listaRecibos.get(i).getNumeroRecibo()==numRecibo) {
+                if(listaRecibos.get(i).isActive() == false) throw new Exception("Recibo pagado");
                 return listaRecibos.get(i);
             }
         }
-        return null;
+        throw new Exception("Vehiculo no encontrado");
     }
     
     /**
@@ -77,9 +82,9 @@ public class LogEventos {
      * @param placa Placa del vehiculo asociado al recibo que se busca.
      * @return El recibo (si existe) o null si no se encuentra.
      */
-    public Recibo BuscarReciboPorPlaca(String placa){
+    public Recibo buscarRecibo(String placa){
         for (int i=0; i<listaRecibos.size(); i++){
-            if(listaRecibos.get(i).getVehiculo().getPlaca().equals(placa)) {
+            if(listaRecibos.get(i).getVehiculo().getPlaca().equals(placa) && listaRecibos.get(i).isActive()==true) {
                 return listaRecibos.get(i);
             }
         }

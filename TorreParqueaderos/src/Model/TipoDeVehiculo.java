@@ -22,6 +22,11 @@ public enum TipoDeVehiculo {
     /** Costo del parqueadero por la hora. */
     private final int costoPorHora;
 
+    /**
+     * Constructor del enum tipo de vehiculo.
+     * 
+     * @param costoPorHora El costo por hora del tipo de vehiculo.
+     */
     TipoDeVehiculo(int costoPorHora) {
         this.costoPorHora = costoPorHora;
     }
