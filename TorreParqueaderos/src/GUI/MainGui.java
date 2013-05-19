@@ -217,6 +217,8 @@ public class MainGui extends JFrame{
         
         if(LogEventos.getInstance().buscarRecibo(placa)!=null) throw new Exception("Existe un vehiculo con la misma placa");
         
+        if(placa.length()>6) throw new Exception("Formato placa invalido");
+        
         if(minEstRet>60){
             horaEstRet++;
             minEstRet = minEstRet%60;

@@ -59,13 +59,15 @@ public class IngresoFrame extends JFrame{
         lblPlaca = new JLabel("Placa");
         add(lblPlaca);
         
-        txtPlaca = new JTextField("AAA000");
+        txtPlaca = new JTextField("");
+        txtPlaca.setToolTipText("Ej: DFT345");
         add(txtPlaca);
         
         lblIDCliente = new JLabel("ID Cliente");
         add(lblIDCliente);
         
-        txtIDCLiente = new JTextField("1234");
+        txtIDCLiente = new JTextField("");
+        txtIDCLiente.setToolTipText("Ej: 70559099");
         add(txtIDCLiente);
         
         lblTiempoEst = new JLabel("Tiempo estimado de parqueo");
