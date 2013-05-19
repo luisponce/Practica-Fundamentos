@@ -6,7 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
+ * Panel de la GUI que permite mostrar la informacion de un recibo ordenada como
+ * una tabla.
+ * 
  * @author Luis M Ponce de leon
  */
 public class InfoReciboPanel extends JPanel{
@@ -29,6 +31,17 @@ public class InfoReciboPanel extends JPanel{
     JLabel lblMontoTitle;
     JLabel lblMontoPagar;
     
+    /**
+     * Constructor del panel de infomracion del recibo usado cuando se
+     * planea retirar el vehiculo, mostrando el cobro del cliente.
+     * 
+     * @param numRecibo Numero del recibo a mostrar.
+     * @param placa Placa del vehiculo relacionado con el recibo.
+     * @param id ID del cliente dueño del vehiculo.
+     * @param horaParq Hora de parqueo del vehiculo.
+     * @param tipoVehiculo El tipo del vehiculo.
+     * @param cobro El monto a pagar por el cliente.
+     */
     public InfoReciboPanel(String numRecibo, String placa, String id, String horaParq, String tipoVehiculo, String cobro){
         setLayout(new GridLayout(6, 2, 20, 10));
         
@@ -69,6 +82,16 @@ public class InfoReciboPanel extends JPanel{
         add(lblMontoPagar);
     }
 
+    /**
+     * Constructor del panel del informacion del recibo, usado cuando se quiere mostrar
+     * solo la informacion relacionada con el recibo, sin el cobro.
+     * 
+     * @param numRecibo Numero del recibo a mostrar.
+     * @param placa Placa del vehiculo relacionado con el recibo.
+     * @param id ID del cliente dueño del vehiculo.
+     * @param horaParq Hora en que se parqueo el vehiculo.
+     * @param tipoVehiculo El tipo de vehiculo.
+     */
     public InfoReciboPanel(String numRecibo, String placa, String id, String horaParq, String tipoVehiculo){
         setLayout(new GridLayout(5, 2, 20, 10));
         

@@ -65,6 +65,7 @@ public class LogEventos {
      * 
      * @param numRecibo numero del recibo a buscar.
      * @return El recibo (si existe) o null si no se encuentra.
+     * @throws Exception cuando el vehiculo no se encuentra o el recibo ya fue pagado. 
      */
     public Recibo buscarRecibo(int numRecibo) throws Exception {
         for (int i=0; i<listaRecibos.size(); i++){

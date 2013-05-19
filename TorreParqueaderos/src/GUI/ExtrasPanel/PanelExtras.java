@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
 public class PanelExtras extends JPanel{
     
     MainTimerPanel mainTimer;
-    NextRetiroPanel countdownTimer;
+    NextRetiroPanel horaNextRetiroPanel;
     StatusSotanoPanel statusSotano;
     PanelBotones botones;
     
@@ -29,8 +29,8 @@ public class PanelExtras extends JPanel{
         mainTimer = new MainTimerPanel();
         add(mainTimer);
         
-        countdownTimer = new NextRetiroPanel();
-        add(countdownTimer);
+        horaNextRetiroPanel = new NextRetiroPanel();
+        add(horaNextRetiroPanel);
         
         statusSotano = new StatusSotanoPanel();
         add(statusSotano);
@@ -43,8 +43,8 @@ public class PanelExtras extends JPanel{
         return mainTimer;
     }
 
-    public NextRetiroPanel getCountdownTimer() {
-        return countdownTimer;
+    public NextRetiroPanel getHoraNextRetiroPanel() {
+        return horaNextRetiroPanel;
     }
 
     public StatusSotanoPanel getStatusSotano() {

@@ -16,19 +16,22 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Clase "Puente" que funciona como coneccion entre las vistas y los modelos.
+ * Crea la ventana Principal y contiene el main del programa.
+ * 
  * @author Luis M Ponce de leon
  */
 public class MainGui extends JFrame{
     private static Parqueadero parq = new Parqueadero();
     
-    private static HoraDelDia nextRetiro = new HoraDelDia(0, 0);
+    private static HoraDelDia nextRetiro = null;
     
     private static PanelExtras panelExtras = new PanelExtras();;
     private static PanelStatus panelStatus = new PanelStatus();;
     
-    //private static 
-    
+    /**
+     *
+     */
     public MainGui(){
         this.setTitle("Main GUI");
         this.setSize(1100, 550);
@@ -44,6 +47,10 @@ public class MainGui extends JFrame{
         
     }
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         RelojInterno.getInstance().start();
         
@@ -63,14 +70,28 @@ public class MainGui extends JFrame{
         new MainGui().setVisible(true);
     }
     
+    /**
+     *
+     */
     public static void showIngresoFrame(){
         new IngresoFrame().setVisible(true);
     }
     
+    /**
+     *
+     */
     public static void showLoginRetiroFrame(){
         new RetiroLoginFrame().setVisible(true);
     }
     
+    /**
+     *
+     * @param placa
+     * @param tipo
+     * @param horaEstRet
+     * @param horaIngreso
+     * @param idCLiente
+     */
     public static void ingresarVehiculo (String placa, TipoDeVehiculo tipo, HoraDelDia horaEstRet, HoraDelDia horaIngreso, int idCLiente){
         try {
             Vehiculo v = new Vehiculo(tipo, placa, horaIngreso, horaEstRet);
@@ -81,10 +102,7 @@ public class MainGui extends JFrame{
                 } else {
                     updateInfoMatrix(v.getFilaParqueo(), v.getColumnaParqueo());
                 }
-                if(getNextRetiro().comparar(new HoraDelDia(0, 0))==0 || v.getHoraEstRetiro().comparar(nextRetiro)==1){
-                    nextRetiro=v.getHoraEstRetiro();
-                    setNextRetiro(nextRetiro.getHoraEn24());
-                }
+                setNextRetiro(parq.getNextRetiro().getHoraEn24());
             } else {
                 System.err.println("Ingreso Fallido");
             }
@@ -97,6 +115,11 @@ public class MainGui extends JFrame{
     
     
     
+    /**
+     *
+     * @param numRecibo
+     * @throws Exception
+     */
     public static void getInfoVehiculo (int numRecibo) throws Exception{
         Recibo r = LogEventos.getInstance().buscarRecibo(numRecibo);
         
@@ -104,6 +127,11 @@ public class MainGui extends JFrame{
         
     }
     
+    /**
+     *
+     * @param numRecibo
+     * @throws Exception
+     */
     public static void retirarVehiculo(int numRecibo) throws Exception{
         
         Recibo r = LogEventos.getInstance().buscarRecibo(numRecibo);
@@ -115,24 +143,49 @@ public class MainGui extends JFrame{
         } else {
             updateInfoMatrix(r.getVehiculo().getFilaParqueo(), r.getVehiculo().getColumnaParqueo());
         }
+       
+       setNextRetiro(parq.getNextRetiro().getHoraEn24());
     }
 
+    /**
+     *
+     * @param fila
+     * @param columna
+     * @return
+     */
     public static int getValMatrizDisp(int fila, int columna){
         return parq.getCeldasEntrada(fila, columna);
     }
     
+    /**
+     *
+     * @param time
+     */
     public static void setMainTimer(String time){
         panelExtras.getMainTimer().setTime(time);
     }
 
+    /**
+     *
+     * @return
+     */
     public static HoraDelDia getNextRetiro() {
         return nextRetiro;
     }
     
+    /**
+     *
+     * @param time
+     */
     public static void setNextRetiro(String time){
-        panelExtras.getCountdownTimer().setHoraProxRetiro(time);
+        panelExtras.getHoraNextRetiroPanel().setHoraProxRetiro(time);
     }
     
+    /**
+     *
+     * @param fila
+     * @param columna
+     */
     public static void updateInfoMatrix(int fila, int columna){
         if(fila < 13){
             panelStatus.getLeftPanel().getMatriz().setDispMatrix(fila+1, columna, getValMatrizDisp(fila, columna));
@@ -141,10 +194,23 @@ public class MainGui extends JFrame{
         }
     }
     
+    /**
+     *
+     * @param celdas
+     */
     public static void updateInfoSotano(String celdas){
         panelExtras.getStatusSotano().setCeldasSotano(celdas);
     }
     
+    /**
+     *
+     * @param tipoV
+     * @param placa
+     * @param idCliente
+     * @param hora
+     * @param min
+     * @throws Exception
+     */
     public static void chekInfo(String tipoV, String placa, String idCliente, int hora, int min) throws Exception{
         int horaEstRet = hora+RelojInterno.getInstance().getHoraActual().getHoras();
         int minEstRet = RelojInterno.getInstance().getHoraActual().getMinutos()+min;

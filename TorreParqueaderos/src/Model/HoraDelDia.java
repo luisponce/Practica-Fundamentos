@@ -48,7 +48,15 @@ public class HoraDelDia {
             if (aComparar.horas < this.horas){
                 return -1;
             } else {
-                return 0;
+                if(aComparar.minutos > this.minutos){
+                    return 1;
+                } else {
+                    if(aComparar.minutos < this.minutos){
+                        return -1;
+                    } else {
+                        return 0;
+                    }            
+                }
             }
         }
     }

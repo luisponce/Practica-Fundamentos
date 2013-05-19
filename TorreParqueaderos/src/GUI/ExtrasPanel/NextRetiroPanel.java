@@ -23,7 +23,7 @@ public class NextRetiroPanel extends JPanel{
         setPreferredSize(new Dimension(100, 40));
         
         lblTitle = new JLabel("Proximo Retiro", (int) CENTER_ALIGNMENT);
-        txtHora = new JTextField("00:00");
+        txtHora = new JTextField(null);
         txtHora.setEditable(false);
         txtHora.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         

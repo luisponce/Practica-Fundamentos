@@ -30,6 +30,7 @@ public class EntradaParqueadero {
      * seran ingresados.
      * 
      * @param vIn Vehiculo que es ingresado.
+     * @throws Exception si no se encontro espacio para el vehiculo en la entrada.
      */
     public void agregarVehiculo(Vehiculo vIn) throws Exception{
         if (celdasOcupadas < celda.length) {
@@ -81,6 +82,15 @@ public class EntradaParqueadero {
      */
     public int getCeldasOcupadas() {
         return celdasOcupadas;
+    }
+    
+    /**
+     * Metodo que retorna el proximo retiro estimado de la entrada.
+     * 
+     * @return La Hora del dia en que se estima el proximo retiro de la entrada.
+     */
+    public HoraDelDia getNextRetiro(){
+        return celda[0].getHoraEstRetiro();
     }
     
     /** Metodo para retirar todos los vehiculos en la entrada y genera la deuda

@@ -176,10 +176,19 @@ public class Recibo {
         return vehiculo.getTipo().name();
     }
     
+    /**
+     * Metodo para obtener el estado del recibo (si esta activo o pagado).
+     * 
+     * @return True si esta activo, false si fue pagado.
+     */
     public boolean isActive(){
         return activo;
     }
     
+    /**
+     * Metodo para pagar el recibo, eliminando la deuda del cliente
+     * y cambiando el estado del recibo.
+     */
     public void pagarRecibo(){
         this.activo=false;
         

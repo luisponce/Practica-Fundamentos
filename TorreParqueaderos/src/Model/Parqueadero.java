@@ -39,6 +39,16 @@ public class Parqueadero {
      * almacenar hasta 100 vehiculos.
      */
     private Vehiculo[] sotano = new Vehiculo[100];
+    
+    /**
+     * La hora del proximo retiro del sotano.
+     */
+    private HoraDelDia proximoRetSotano = new HoraDelDia(0, 0);
+    
+    /**
+     * La hora del proximo retiro de la torre.
+     */
+    private HoraDelDia proximoRetTorre = new HoraDelDia(0, 0);
 
     /** 
      * Numero de celdas ocupadas en el sotano, para un mejor control de este.
@@ -56,7 +66,7 @@ public class Parqueadero {
      * 
      * @param vIn El vehiculo que se quiere ingresar.
      * @return True si el ingreso fue exitoso, false si no fue ingresado.
-     * @exception  Exception, en el caso de que el vehiculo no pueda ser ingresado.
+     * @throws Exception en el caso de que el vehiculo no pueda ser ingresado.
      */
     public boolean ingresarVehiculo(Vehiculo vIn) throws Exception {        
         String placa= vIn.getPlaca();
@@ -76,6 +86,9 @@ public class Parqueadero {
                         vIn.setFilaParqueo(-1);
                         vIn.setColumnaParqueo(i);
                         celdasOcupadasSotano++;
+                        if(proximoRetSotano.comparar(vIn.getHoraEstRetiro()) == -1 || (proximoRetSotano.getHoras()==0 && proximoRetSotano.getMinutos()==0)){
+                            proximoRetSotano=vIn.getHoraEstRetiro();
+                        }
                         return true;
                     }
                 }
@@ -84,7 +97,6 @@ public class Parqueadero {
             }
         }
         return false;
-        
     }
 
     /** Metodo para retirar un vehiculo apartir de su placa. Busca el vehiculo 
@@ -92,20 +104,53 @@ public class Parqueadero {
      * la entrada se busca en el sotano.
      * 
      * @param placa Placa de vehiculo que se busca retirar.
+     * @throws Exception En el caso de que no se encuentre el vehiculo especificado. 
      */
     public void retirarVehiculo(String placa) throws Exception {
         int fila = (placa.toUpperCase().charAt(0) - 'A');
         int columna = placa.charAt(placa.length()-1) - 48;
         if (torre[fila][columna].retirarVehiculo(placa)){
             matrizDeDisponibilidad[fila][columna]--;
+            updateHoraProxRetiro();
         } else {
             for (int i=0; i<celdasOcupadasSotano; i++){
                 if (sotano[i].getPlaca().equals(placa)){
                     sotano[i]=null;
                     celdasOcupadasSotano--;
+                    updateProxRetiroSotano();
                 }
             }
             throw new Exception("No se encontro ningun vehiculo de placas: " + placa);
+        }
+    }
+    
+    /**
+     * Metodo para verificar/actualizar cual es la proxima hora de retiro de entre todas las entradas.
+     */
+    public void updateHoraProxRetiro(){
+        proximoRetTorre= new HoraDelDia(0, 0);
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < 10; j++) {
+                if(matrizDeDisponibilidad[i][j]!=0){
+                    if(proximoRetTorre.comparar(torre[i][j].getNextRetiro()) == -1 || (proximoRetTorre.getHoras()==0 && proximoRetTorre.getMinutos()==0)){
+                        proximoRetTorre=torre[i][j].getNextRetiro();
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Metodo para verificar/actualizar la hora proxima de retiro del sotano.
+     */
+    public void updateProxRetiroSotano(){
+        proximoRetSotano= new HoraDelDia(0, 0);
+        for (int i = 0; i < sotano.length; i++) {
+            if(sotano[i]!=null){
+                if(proximoRetSotano.comparar(sotano[i].getHoraEstRetiro())==-1 || (proximoRetSotano.getHoras()==0 && proximoRetSotano.getMinutos()==0)){
+                    proximoRetSotano=sotano[i].getHoraEstRetiro();
+                }
+            }
         }
     }
 
@@ -116,6 +161,8 @@ public class Parqueadero {
     public int getCeldasSotano() {
         return celdasOcupadasSotano;
     }
+    
+    
 
     /** Metodo llamado para sacar todos los vehiculos almacenados en el 
      * parqueadero. Este llama el metodo Limpieza de celdas en cada entrada
@@ -147,5 +194,29 @@ public class Parqueadero {
      */
     public int getCeldasEntrada(int fila, int columna){
         return matrizDeDisponibilidad[fila][columna];
+    }
+    
+    /**
+     * geter del proximo retiro de todo el parqueadero.
+     * 
+     * @return la hora del proximo retiro.
+     */
+    public HoraDelDia getNextRetiro(){
+        updateHoraProxRetiro();
+        updateProxRetiroSotano();
+        //si el proximo retiro se encuentra en la torre
+        if(proximoRetSotano.comparar(proximoRetTorre)==1){
+            if(proximoRetTorre.getHoras()!=0 || proximoRetTorre.getMinutos()!=0){
+                return proximoRetTorre;
+            }
+            
+        //si esta en el sotano
+        } else {
+            if(proximoRetSotano.getHoras()!=0 || proximoRetSotano.getMinutos()!=0){
+                return proximoRetSotano;
+            }
+        }
+        
+        return new HoraDelDia(0, 0);
     }
 }
