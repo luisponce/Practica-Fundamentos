@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * Clase "Puente" que funciona como coneccion entre las vistas y los modelos.
+ * Clase "Puente" o controlador que funciona como coneccion entre las vistas y los modelos.
  * Crea la ventana Principal y contiene el main del programa.
  * 
  * @author Luis M Ponce de leon
@@ -29,9 +29,6 @@ public class MainGui extends JFrame{
     private static PanelExtras panelExtras = new PanelExtras();;
     private static PanelStatus panelStatus = new PanelStatus();;
     
-    /**
-     *
-     */
     public MainGui(){
         this.setTitle("Main GUI");
         this.setSize(1100, 550);
@@ -47,11 +44,8 @@ public class MainGui extends JFrame{
         
     }
     
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args) {
+        //Inicia el reloj
         RelojInterno.getInstance().start();
         
 //        //debug
@@ -66,31 +60,37 @@ public class MainGui extends JFrame{
 //        updateInfoMatrix(0, 0);
 //        //end debug
         
-        
+        //"pinta" las vistas
         new MainGui().setVisible(true);
+        //new DevTimeManager().setVisible(true);
     }
     
     /**
-     *
+     * Metodo llamado al presionar el boton de ingreso. Musetra la ventana de ingreso de vehiculo.
+     * 
+     * @see IngresoFrame
      */
     public static void showIngresoFrame(){
         new IngresoFrame().setVisible(true);
     }
     
     /**
-     *
+     * Metodo llamado al presionar el boton de retiro. Muestra la ventana de retiro de vehiculo.
+     * 
+     * @see RetiroLoginFrame
      */
     public static void showLoginRetiroFrame(){
         new RetiroLoginFrame().setVisible(true);
     }
     
     /**
-     *
-     * @param placa
-     * @param tipo
-     * @param horaEstRet
-     * @param horaIngreso
-     * @param idCLiente
+     * Metodo llamado para ingresar un vehiculo en el modelo
+     * 
+     * @param placa placa del vehiculo a ingresar
+     * @param tipo tipo del vehiculo
+     * @param horaEstRet hora en que se estima retirar el vehiculo
+     * @param horaIngreso hora en que ingresa el vehiculo (hora actual)
+     * @param idCLiente id del cliente que hace el ingreso del vehiculo.
      */
     public static void ingresarVehiculo (String placa, TipoDeVehiculo tipo, HoraDelDia horaEstRet, HoraDelDia horaIngreso, int idCLiente){
         try {
@@ -116,9 +116,10 @@ public class MainGui extends JFrame{
     
     
     /**
-     *
-     * @param numRecibo
-     * @throws Exception
+     * Metodo para obtener la informacion de un vehiculo por medio del modelo.
+     * 
+     * @param numRecibo numero del recibo relacionado con el vehiculo que se busca.
+     * @throws Exception en caso de que no se encuentre un recibo con ese numero.
      */
     public static void getInfoVehiculo (int numRecibo) throws Exception{
         Recibo r = LogEventos.getInstance().buscarRecibo(numRecibo);
@@ -128,9 +129,10 @@ public class MainGui extends JFrame{
     }
     
     /**
-     *
-     * @param numRecibo
-     * @throws Exception
+     * Metodo para retirar un vehiculo del modelo.
+     * 
+     * @param numRecibo el numero del recibo con el cual esta relacionado el vehiculo.
+     * @throws Exception en el caso de que no se encuentre el recibo, o que el vehiculo ya haya sido retirado.
      */
     public static void retirarVehiculo(int numRecibo) throws Exception{
         
@@ -148,43 +150,48 @@ public class MainGui extends JFrame{
     }
 
     /**
-     *
-     * @param fila
-     * @param columna
-     * @return
+     * Geter de la matriz de disponibilidad.
+     * 
+     * @param fila fila de la matriz que se desea acceder.
+     * @param columna columna de la matriz que se desea acceder.
+     * @return el valor de la matriz en esa posiscion. es decir el numero de vehiculos almacenados en dicha entrada.
      */
     public static int getValMatrizDisp(int fila, int columna){
         return parq.getCeldasEntrada(fila, columna);
     }
     
     /**
-     *
-     * @param time
+     * Seter del timer o reloj actual.
+     * 
+     * @param time hora a mostrar.
      */
     public static void setMainTimer(String time){
         panelExtras.getMainTimer().setTime(time);
     }
 
     /**
-     *
-     * @return
+     * Geter de la hora del proximo retiro
+     * 
+     * @return La hora del proximo retiro.
      */
     public static HoraDelDia getNextRetiro() {
         return nextRetiro;
     }
     
     /**
-     *
-     * @param time
+     * Seter del reloj que muestra cuando se realizara el proximo retiro.
+     * 
+     * @param time Hora a mostrar.
      */
     public static void setNextRetiro(String time){
         panelExtras.getHoraNextRetiroPanel().setHoraProxRetiro(time);
     }
     
     /**
-     *
-     * @param fila
-     * @param columna
+     * Metodo para cambiar el valor que se muestra en las matrizes de la vista principal.
+     * 
+     * @param fila fila de la entrada a refrescar.
+     * @param columna Columna de la entrada a refrescar.
      */
     public static void updateInfoMatrix(int fila, int columna){
         if(fila < 13){
@@ -195,21 +202,24 @@ public class MainGui extends JFrame{
     }
     
     /**
-     *
-     * @param celdas
+     * Metodo para cambiar la informacion de disponibilidad del sotano en la vista principal.
+     * 
+     * @param celdas 
      */
     public static void updateInfoSotano(String celdas){
         panelExtras.getStatusSotano().setCeldasSotano(celdas);
     }
     
     /**
-     *
-     * @param tipoV
-     * @param placa
-     * @param idCliente
-     * @param hora
-     * @param min
-     * @throws Exception
+     * Metodo para validar la informacion de un ingreso y continuar con el ingreso
+     * si no se presenta ningun problema.
+     * 
+     * @param tipoV tipo del vehiculo ingresado.
+     * @param placa Placa del vehiculo a ingresar.
+     * @param idCliente Id del cliente que ingresa el vehiculo.
+     * @param hora Hora(s) que se espera este parqueado el vehiculo.
+     * @param min Minutos que se espera que este parqueado el vehiculo.
+     * @throws Exception en el caso de que algun dato no cumpla con el formato esperado se genera una excepcion.
      */
     public static void chekInfo(String tipoV, String placa, String idCliente, int hora, int min) throws Exception{
         int horaEstRet = hora+RelojInterno.getInstance().getHoraActual().getHoras();
