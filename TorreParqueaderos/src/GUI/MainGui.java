@@ -9,11 +9,10 @@ import GUI.Retiro.InfoRetiroFrame;
 import GUI.StatusPanel.PanelStatus;
 import Model.*;
 import java.awt.BorderLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import sun.rmi.log.ReliableLog;
 
 /**
  * Clase "Puente" o controlador que funciona como coneccion entre las vistas y los modelos.
@@ -62,7 +61,7 @@ public class MainGui extends JFrame{
         
         //"pinta" las vistas
         new MainGui().setVisible(true);
-        //new DevTimeManager().setVisible(true);
+        new DevTimeManager().setVisible(true);
     }
     
     /**
@@ -252,5 +251,15 @@ public class MainGui extends JFrame{
         int numIDCliente = Integer.parseInt(idCliente);
         
         ingresarVehiculo(placa, tipo, new HoraDelDia(horaEstRet, minEstRet), RelojInterno.getInstance().getHoraActual(), numIDCliente);
+    }
+    
+    /**
+     * metodo para adelantar el tiempo en el modelo.
+     * 
+     * @param h Horas a adelantar
+     * @param m Minutos a adelantar
+     */
+    public static void adelantarTiempo(int h, int m){
+        RelojInterno.getInstance().adelantarTiempo(h, m);
     }
 }
