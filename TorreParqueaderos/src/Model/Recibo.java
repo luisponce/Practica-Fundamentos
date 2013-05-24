@@ -28,8 +28,7 @@ public class Recibo {
      * Porcentaje del valor de la hora del tipo de vehiculo a pagar como multa
      * por tener que retirar el vehiculo a las 24horas.
      * <P>
-     * Por ser porcentaje el 0
-     * es 0%, 0.5 es 50%, 1 es 100%, 2 es 200%, etc.
+     * Por ser porcentaje el 0 es 0%, 0.5 es 50%, 1 es 100%, 2 es 200%, etc.
      */
     private static final double MULTARETIRO= 0.4;
 

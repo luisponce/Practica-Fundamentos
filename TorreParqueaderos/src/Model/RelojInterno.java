@@ -45,6 +45,7 @@ public class RelojInterno extends Thread{
         private static final RelojInterno INSTANCE = new RelojInterno();
     }
     
+    //avance del tiempo
     @Override
     public void run() {
         while(true){
@@ -82,7 +83,7 @@ public class RelojInterno extends Thread{
             this.minutos= this.minutos%60;
         }
         if (this.horas>=24){
-            //iniciar limpieza!!
+            MainGui.iniciarLimpieza();
             this.horas= this.horas%24;
         }
         

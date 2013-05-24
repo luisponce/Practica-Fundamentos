@@ -47,7 +47,7 @@ public class MainGui extends JFrame{
         //Inicia el reloj
         RelojInterno.getInstance().start();
         
-//        //debug
+        //debug
 //        Vehiculo testV = new Vehiculo(TipoDeVehiculo.CAMPERO, "AAA000", RelojInterno.getInstance().getHoraActual(), new HoraDelDia(1, 20));
 //        for (int i = 0; i < 24; i++) {
 //            try {
@@ -203,7 +203,7 @@ public class MainGui extends JFrame{
     /**
      * Metodo para cambiar la informacion de disponibilidad del sotano en la vista principal.
      * 
-     * @param celdas 
+     * @param celdas Numero de celdas pcupadas a mostrar en la vista.
      */
     public static void updateInfoSotano(String celdas){
         panelExtras.getStatusSotano().setCeldasSotano(celdas);
@@ -261,5 +261,21 @@ public class MainGui extends JFrame{
      */
     public static void adelantarTiempo(int h, int m){
         RelojInterno.getInstance().adelantarTiempo(h, m);
+    }
+    
+    /**
+     * Metodo para iniciar la limpieaza del parqueadero que ocurre a las 24:00 horas.
+     * Esta limpieza retira todos los vehiculos y genera las deudas acumuludas a
+     * los dueños de los vehiculos retirados.
+     */
+    public static void iniciarLimpieza(){
+        parq.limpiezaParqueadero();
+        for (int i = 0; i < 24; i++) {
+            for (int j = 0; j < 10; j++) {
+                updateInfoMatrix(i, j);
+            }
+        }
+        updateInfoSotano("0");
+        setNextRetiro("");
     }
 }

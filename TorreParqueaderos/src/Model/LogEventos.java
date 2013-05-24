@@ -70,7 +70,7 @@ public class LogEventos {
     public Recibo buscarRecibo(int numRecibo) throws Exception {
         for (int i=0; i<listaRecibos.size(); i++){
             if(listaRecibos.get(i).getNumeroRecibo()==numRecibo) {
-                if(listaRecibos.get(i).isActive() == false) throw new Exception("Recibo pagado");
+                if(listaRecibos.get(i).isActive() == false) throw new Exception("Recibo inactivo");
                 return listaRecibos.get(i);
             }
         }
