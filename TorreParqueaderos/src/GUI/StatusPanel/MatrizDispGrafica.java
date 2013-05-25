@@ -2,6 +2,7 @@
 package GUI.StatusPanel;
 
 import GUI.MainGui;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,10 +32,12 @@ public class MatrizDispGrafica extends JPanel{
         
         dispMatrix[0][0] = new JTextField("");
         dispMatrix[0][0].setEditable(false);
+        dispMatrix[0][0].setBackground(Color.white);
         add(dispMatrix[0][0]);
         
         for (int i = 1; i < 11; i++) {
             dispMatrix[0][i] = new JTextField("" + (i-1));
+            dispMatrix[0][i].setBackground(Color.white);
             dispMatrix[0][i].setEditable(false);
             add(dispMatrix[0][i]);
         }
@@ -43,11 +46,13 @@ public class MatrizDispGrafica extends JPanel{
             for (int i = 1; i < 14; i++) {
                 char c = (char) (i-1 + 65);
                 dispMatrix[i][0] = new JTextField("" +c);
+                dispMatrix[i][0].setBackground(Color.white);
                 dispMatrix[i][0].setEditable(false);
                 add(dispMatrix[i][0]);
                 
                 for (int j = 1; j < 11; j++) {
                     dispMatrix[i][j] = new JTextField("" + MainGui.getValMatrizDisp(i-1, j-1));
+                    dispMatrix[i][j].setBackground(Color.LIGHT_GRAY);
                     dispMatrix[i][j].setEditable(false);
                     add(dispMatrix[i][j]);
                 }
@@ -56,11 +61,13 @@ public class MatrizDispGrafica extends JPanel{
             for (int i = 1; i < 14; i++) {
                 char c = (char) (i-1 + 65 + 13);
                 dispMatrix[i][0] = new JTextField("" + c);
+                dispMatrix[i][0].setBackground(Color.white);
                 dispMatrix[i][0].setEditable(false);
                 add(dispMatrix[i][0]);
                 
                 for (int j = 1; j < 11; j++) {
                     dispMatrix[i][j] = new JTextField("" + MainGui.getValMatrizDisp(i-1 +13, j-1));
+                    dispMatrix[i][j].setBackground(Color.LIGHT_GRAY);
                     dispMatrix[i][j].setEditable(false);
                     add(dispMatrix[i][j]);
                 }
@@ -82,6 +89,17 @@ public class MatrizDispGrafica extends JPanel{
      * @param val Valor a "escribir" en la celda.
      */
     public void setDispMatrix(final int fila, final int columna, final int val) {
+        //color-code
+        if(val!=0){
+            if(val==24){
+                dispMatrix[fila][columna+1].setBackground(Color.red);
+            } else {
+                dispMatrix[fila][columna+1].setBackground(Color.GREEN);
+            }
+        } else {
+            dispMatrix[fila][columna+1].setBackground(Color.LIGHT_GRAY);
+        }
+        
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run()
