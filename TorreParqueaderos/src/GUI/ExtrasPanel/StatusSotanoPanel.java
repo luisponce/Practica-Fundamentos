@@ -10,7 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase que contiene la visata de la informacion del status del sotano.
+ * 
  * @author Luis M Ponce de leon
  */
 public class StatusSotanoPanel extends JPanel{
@@ -31,6 +32,11 @@ public class StatusSotanoPanel extends JPanel{
         add(celdasSotano, BorderLayout.SOUTH);
     }
 
+    /**
+     * Metodo para cambiar la informacion que se muestra en la vista del proximo retiro.
+     * 
+     * @param celdas Numero de celdas ocupadas en el sotano
+     */
     public void setCeldasSotano(final String celdas){
         SwingUtilities.invokeLater(new Runnable() {
             @Override

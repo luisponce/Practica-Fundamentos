@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
- *
+ * Clase para mostrar la informacion del ingreso por medio de la gui, ademas del
+ * recibo que se imprime.
+ * 
  * @author Luis M Ponce de leon
  */
 public class ShowReciboFrame extends JFrame{

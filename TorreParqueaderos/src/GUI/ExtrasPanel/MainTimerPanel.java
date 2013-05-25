@@ -9,7 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase que contiene la vista del reloj interno del sistema.
+ * 
  * @author Luis M Ponce de leon
  */
 public class MainTimerPanel extends JPanel{
@@ -30,6 +31,11 @@ public class MainTimerPanel extends JPanel{
         add(txtHora, BorderLayout.SOUTH);
     }
     
+    /**
+     * Cambia la informacion que se muestra en el reloj por el parametro suministrado.
+     * 
+     * @param horaEn24 La hora a mostrar en String.
+     */
     public void setTime(final String horaEn24){
         SwingUtilities.invokeLater(new Runnable() {
             @Override

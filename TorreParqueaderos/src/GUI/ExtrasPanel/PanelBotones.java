@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- *
+ * Clase que contiene los botones de ingreso y retiro de la vista principal.
+ * 
  * @author Luis M Ponce de leon
  */
 public class PanelBotones extends JPanel{

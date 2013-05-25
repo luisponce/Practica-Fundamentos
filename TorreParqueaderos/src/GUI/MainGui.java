@@ -4,15 +4,11 @@ package GUI;
 import GUI.Ingreso.IngresoFrame;
 import GUI.Retiro.RetiroLoginFrame;
 import GUI.ExtrasPanel.PanelExtras;
-import GUI.Ingreso.ShowReciboFrame;
 import GUI.Retiro.InfoRetiroFrame;
 import GUI.StatusPanel.PanelStatus;
 import Model.*;
 import java.awt.BorderLayout;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import sun.rmi.log.ReliableLog;
 
 /**
  * Clase "Puente" o controlador que funciona como coneccion entre las vistas y los modelos.
@@ -57,7 +53,7 @@ public class MainGui extends JFrame{
 //            }
 //        }
 //        updateInfoMatrix(0, 0);
-//        //end debug
+        //end debug
         
         //"pinta" las vistas
         new MainGui().setVisible(true);

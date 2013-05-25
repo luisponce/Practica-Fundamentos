@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -40,6 +39,7 @@ public class DevTimeManager extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Obtiene la info suministrada y adelanta el tiempo adecuado.
                 int h=getHora();
                 int m=getMinuto();
                 MainGui.adelantarTiempo(h, m);

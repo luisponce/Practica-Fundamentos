@@ -9,13 +9,21 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase para dibujar una matriz de disponibilidad del parqueadero teniendo en cuenta
+ * si es la primera o la segunda matriz. Estas van de A-M, y de N-Z respectivamente.
+ * 
  * @author Luis M Ponce de leon
  */
 public class MatrizDispGrafica extends JPanel{
 
     JTextField[][] dispMatrix;
     
+    /**
+     * Constructor generico que crea la matriz de la derecha o la izquierda,
+     * teniendo en cuenta el parametro suministrado.
+     * 
+     * @param isIzq True si es la matriz de la izquierda (A-M) o False si es la de la derecha (N-Z).
+     */
     public MatrizDispGrafica(boolean isIzq) {
         dispMatrix = new JTextField[14][11];
         
@@ -66,6 +74,13 @@ public class MatrizDispGrafica extends JPanel{
         }
     }
 
+    /**
+     * Metodo para cambiar la informacion que se muestra en la celda de la matriz especificada.
+     * 
+     * @param fila Fila de la celda a modificar.
+     * @param columna Columna de la celda a modificar.
+     * @param val Valor a "escribir" en la celda.
+     */
     public void setDispMatrix(final int fila, final int columna, final int val) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

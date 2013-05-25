@@ -5,15 +5,14 @@ import GUI.StatusPanel.PanelStatusMatrix;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 /**
- *
+ * Clase que contiene la vista principal del estatus del parqueadero. Contiene
+ * las dos matrices de disponibilidad de la torre.
+ * 
  * @author Luis M Ponce de leon
  */
 public class PanelStatus extends JPanel {

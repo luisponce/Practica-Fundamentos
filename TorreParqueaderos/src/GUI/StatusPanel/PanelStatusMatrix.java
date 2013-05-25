@@ -5,10 +5,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
- *
+ * Clase que organiza la matriz de disponibilidad con su titulo para un manejo mas facil de las vistas.
+ * 
  * @author Luis M Ponce de leon
  */
 public class PanelStatusMatrix extends JPanel{

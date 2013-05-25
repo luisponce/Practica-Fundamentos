@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 /**
  * Panel de la GUI que permite mostrar la informacion de un recibo ordenada como
- * una tabla.
+ * una tabla. La tabla se construlle de manera que se puede reutilizar de ser necesario.
  * 
  * @author Luis M Ponce de leon
  */

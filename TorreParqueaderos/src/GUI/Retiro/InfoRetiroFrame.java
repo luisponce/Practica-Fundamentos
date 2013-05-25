@@ -8,16 +8,16 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
- *
+ * Clase que muestra la informacion del retiro con el valor a pagar. Permite
+ * continuar con el retiro y pagar el recibo o cancelar el retiro en el caso de
+ * que se desee asi.
+ * 
  * @author Luis M Ponce de leon
  */
 public class InfoRetiroFrame extends JFrame{

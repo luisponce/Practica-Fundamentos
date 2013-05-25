@@ -8,7 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 /**
- *
+ * Clase que contiene todos los elementos extras al estatus principal de la torre,
+ * es decir el reloj interno, el proximo retiro, el status del sotano y los botones
+ * de retiro e ingreso.
+ * 
  * @author Luis M Ponce de leon
  */
 public class PanelExtras extends JPanel{
@@ -21,7 +24,6 @@ public class PanelExtras extends JPanel{
     public PanelExtras() {
         setLayout(new FlowLayout((int) CENTER_ALIGNMENT,75,60));
         setPreferredSize(new Dimension(290, 500));
-        //panels of 250x
         
         TitledBorder border = BorderFactory.createTitledBorder("Opciones");
         this.setBorder(border);

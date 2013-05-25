@@ -4,11 +4,8 @@ package GUI.Retiro;
 import GUI.MainGui;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
+ * Clase que permite el ingreso del numero de recibo para comenzar el retiro. Esta
+ * lleva a cabo los llamados a los metodos necesarios para el retiro.
+ * 
  * @author Luis M Ponce de leon
  */
 public class RetiroLoginFrame extends JFrame {

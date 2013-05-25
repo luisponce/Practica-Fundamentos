@@ -10,7 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Clase que contiene la vista de la informacion del proximo retiro del sistema.
+ * 
  * @author Luis M Ponce de leon
  */
 public class NextRetiroPanel extends JPanel{

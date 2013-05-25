@@ -5,8 +5,6 @@ import GUI.MainGui;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,7 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
+ * Clase que contiene la vista del formulario para ingresar un vehiculo.
+ * 
  * @author Luis M Ponce de leon
  */
 public class IngresoFrame extends JFrame{
@@ -110,6 +109,9 @@ public class IngresoFrame extends JFrame{
         this.dispose();
     }
     
+    /**
+     * Metodo para validar y realizar el ingreso si la informacion es valida.
+     */
     private void saveInfo(){
          String tipoV = comboTipoV.getItemAt(comboTipoV.getSelectedIndex());
          String placa = txtPlaca.getText().toUpperCase();
@@ -118,11 +120,10 @@ public class IngresoFrame extends JFrame{
          int minSel = comboMin.getItemAt(comboMin.getSelectedIndex());
         try {
             MainGui.chekInfo(tipoV, placa, iDCliente, horasSel, minSel);
+            close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error en Ingreso", JOptionPane.WARNING_MESSAGE);
         }
-        
-        close();
     }
 
 }
