@@ -2,6 +2,7 @@
 package GUI.ExtrasPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -26,6 +27,7 @@ public class NextRetiroPanel extends JPanel{
         lblTitle = new JLabel("Proximo Retiro", (int) CENTER_ALIGNMENT);
         txtHora = new JTextField(null);
         txtHora.setEditable(false);
+        txtHora.setBackground(Color.WHITE);
         txtHora.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         
         add(lblTitle, BorderLayout.NORTH);

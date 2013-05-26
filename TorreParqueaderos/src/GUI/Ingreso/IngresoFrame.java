@@ -120,6 +120,7 @@ public class IngresoFrame extends JFrame{
          int minSel = comboMin.getItemAt(comboMin.getSelectedIndex());
         try {
             MainGui.chekInfo(tipoV, placa, iDCliente, horasSel, minSel);
+            new ShowReciboFrame(placa, iDCliente, MainGui.getHoraActual(), tipoV).setVisible(true);
             close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error en Ingreso", JOptionPane.WARNING_MESSAGE);

@@ -2,6 +2,7 @@
 package GUI.ExtrasPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -26,6 +27,7 @@ public class StatusSotanoPanel extends JPanel{
         lblTitle = new JLabel("Sotano", (int) CENTER_ALIGNMENT);
         celdasSotano = new JTextField("0");
         celdasSotano.setEditable(false);
+        celdasSotano.setBackground(Color.WHITE);
         celdasSotano.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         
         add(lblTitle, BorderLayout.NORTH);

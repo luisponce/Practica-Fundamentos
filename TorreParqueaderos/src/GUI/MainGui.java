@@ -111,7 +111,7 @@ public class MainGui extends JFrame{
     
     
     /**
-     * Metodo para obtener la informacion de un vehiculo por medio del modelo.
+     * Metodo para obtener la informacion de un vehiculo para hacer el retiro por medio del modelo.
      * 
      * @param numRecibo numero del recibo relacionado con el vehiculo que se busca.
      * @throws Exception en caso de que no se encuentre un recibo con ese numero.
@@ -273,5 +273,60 @@ public class MainGui extends JFrame{
         }
         updateInfoSotano("0");
         setNextRetiro("");
+    }
+    
+    /**
+     * Metodo que busca el recibo que vincula al vehiculo con la placa suministrada.
+     * 
+     * @param placa PLaca del vehiculo al cual se busca su numero de recibo.
+     * @return El numero del recibo que relaciona el vehiculo.
+     */
+    public static int getNumRecibo(String placa){
+         return LogEventos.getInstance().buscarRecibo(placa).getNumeroRecibo();
+    }
+    
+    /**
+     * Metodo que retorna la hora actual del sistema como un string.
+     * 
+     * @return La hora actual del sistema como string.
+     */
+    public static String getHoraActual(){
+        return RelojInterno.getInstance().getHoraActual().getHoraEn24();
+    }
+    
+    /**
+     * Metodo que retorna el piso del vehiculo almacenado con la placa suministrada.
+     * 
+     * @param placa Placa del vehiculo en cuestion.
+     * @return El numero del piso en que esta almacenado el vehiculo. -1 si es el sotano.
+     */
+    public static String getPisoParqueo(String placa){
+        int piso = LogEventos.getInstance().buscarRecibo(placa).getVehiculo().getFilaParqueo();
+        if (piso==-1) {
+            return "Sotano";
+        }
+        else {
+            return "" + ((char) (65 + piso));
+        }
+    }
+    
+    /**
+     * Metodo para obtener la columna en que se encuentra parqueado un vehiculo con la placa suministrada.
+     * 
+     * @param placa Placa del vehiculo en cuestion.
+     * @return La entrada o columna en que se encuentra el vehiculo.
+     */
+    public static String getCeldaParqueo(String placa){
+        return "" + LogEventos.getInstance().buscarRecibo(placa).getVehiculo().getColumnaParqueo();
+    }
+    
+    /**
+     * Metodo para obtener la hora estimada de returo de un vehiculo por medio de su placa.
+     * 
+     * @param placa Placa del vehiculo en cuestion.
+     * @return La hora estimada de retiro del vehiculo.
+     */
+    public static String getHoraRetiroVehiculo(String placa){
+        return LogEventos.getInstance().buscarRecibo(placa).getVehiculo().getHoraEstRetiro().getHoraEn24();
     }
 }

@@ -4,7 +4,6 @@ package GUI.Ingreso;
 import GUI.InfoReciboPanel;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
@@ -16,17 +15,16 @@ import javax.swing.JFrame;
 public class ShowReciboFrame extends JFrame{
 
     InfoReciboPanel infoRecibo;
-    JButton cancelar;
-    JButton pagar;
     
-    public ShowReciboFrame(String numRecibo, String placa, String id, String horaParq, String tipoVehiculo) {
-        setSize(new Dimension(300, 300));
+    public ShowReciboFrame(String placa, String id, String horaParq, String tipoVehiculo) {
+        setSize(new Dimension(270, 300));
+        setResizable(false);
         setTitle("Recibo");
         setLayout(new FlowLayout((int) CENTER_ALIGNMENT, 30, 20));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         
-        infoRecibo = new InfoReciboPanel(numRecibo, placa, id, horaParq, tipoVehiculo);
+        infoRecibo = new InfoReciboPanel(placa, id, horaParq, tipoVehiculo);
         add(infoRecibo);
     }
 

@@ -2,6 +2,7 @@
 package GUI.ExtrasPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +26,7 @@ public class MainTimerPanel extends JPanel{
         lblTitle = new JLabel("Hora Actual", (int) CENTER_ALIGNMENT);
         txtHora = new JTextField("00:00");
         txtHora.setEditable(false);
+        txtHora.setBackground(Color.WHITE);
         txtHora.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         
         add(lblTitle, BorderLayout.NORTH);
